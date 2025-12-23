@@ -173,21 +173,16 @@ class LinkedList:
         # remove duplicated when you find them
 
         cur = self.head
-
-        if not cur:
-            return None
-        
         prev = None
-
-        hashmap = {}
+        seen = set()
 
         while cur:
-            if hashmap.get(cur.data):
+            if cur.data in seen:
                 prev.next = cur.next
                 cur = None
                 
             else:
-                hashmap[cur.data] = 1
+                seen.add(cur.data)
                 prev = cur
             
             cur = prev.next
@@ -201,11 +196,11 @@ class LinkedList:
         
 llist = LinkedList()
 
-llist.append("A")
-llist.append("B")
-llist.append("C")
-llist.append("A")
-llist.append("D")
+# llist.append("A")
+# llist.append("B")
+# llist.append("C")
+# llist.append("A")
+# llist.append("D")
 
 print("Original Linked List")
 llist.print_list()
