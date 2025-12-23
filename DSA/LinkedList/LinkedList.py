@@ -161,6 +161,42 @@ class LinkedList:
         
         self.head = _reverse_recursive(prev=None,cur=self.head)
 
+    # def merge_sorted(self, llist):
+    #     ll1 = self.head
+    #     ll2 = llist.head
+
+    #     if ll1.data < ll2.data:
+
+    def remove_duplicates(self):
+        # traverse linked list
+        # keep track of values using has table
+        # remove duplicated when you find them
+
+        cur = self.head
+
+        if not cur:
+            return None
+        
+        prev = None
+
+        hashmap = {}
+
+        while cur:
+            if hashmap.get(cur.data):
+                prev.next = cur.next
+                cur = None
+                
+            else:
+                hashmap[cur.data] = 1
+                prev = cur
+            
+            cur = prev.next
+
+
+
+
+
+
 
         
 llist = LinkedList()
@@ -168,11 +204,16 @@ llist = LinkedList()
 llist.append("A")
 llist.append("B")
 llist.append("C")
+llist.append("A")
 llist.append("D")
+
+print("Original Linked List")
+llist.print_list()
 
 # llist.prepend("D")
 
 # llist.insert_after_node(llist.head.next, "F")
+
 # llist.delete_by_value("F")
 
 # print(llist.len_recursive(llist.head))
@@ -181,6 +222,25 @@ llist.append("D")
 
 # llist.reverse_iterative()
 
-llist.reverse_recursive()
+# llist.reverse_recursive()
 
+llist.remove_duplicates()
+
+print("Linked List After Operation")
 llist.print_list()
+
+
+
+# ll1 = LinkedList()
+# ll1.append(1)
+# ll1.append(5)
+# ll1.append(6)
+# ll1.append(8)
+
+# ll2 = LinkedList()
+# ll2.append(2)
+# ll2.append(3)
+# ll2.append(4)
+# ll2.append(7)
+
+# ll1.merge_sorted(ll1.head, ll2)
