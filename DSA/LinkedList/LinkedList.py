@@ -187,23 +187,69 @@ class LinkedList:
             
             cur = prev.next
 
+    def print_nth_from_last(self, n):
+        count = 0
+
+        cur = self.head
+
+        while cur:
+            cur = cur.next
+            count += 1
+        
+        print(count)
+
+        index = count - n
+
+        cur = self.head
+
+        while index > 0:
+            cur = cur.next
+            index -= 1
+        
+        return cur.data
 
 
+    # def count_occurences_iterative(self, data):
 
+    # def rotate(self, k):
+
+    # def is_palindrome_using_string(self):
+
+    # def is_palindrome_using_stack(self):  
+
+    # def is_palindrome_using_ll(self):
+
+    def move_tail_to_head(self):
+        # traverse the linked list
+        # prev, cur
+
+        if not self.head or not self.head.next:
+            return
+    
+        prev = None
+        cur = self.head
+        
+        while cur.next:
+            prev = cur
+            cur = cur.next 
+    
+        prev.next = None
+        cur.next = self.head
+        self.head = cur
 
 
 
         
 llist = LinkedList()
 
-# llist.append("A")
-# llist.append("B")
-# llist.append("C")
-# llist.append("A")
-# llist.append("D")
+llist.append("A")
+llist.append("B")
+llist.append("C")
+llist.append("A")
+llist.append("D")
 
-print("Original Linked List")
-llist.print_list()
+# print("Original Linked List")
+# llist.print_list()
 
 # llist.prepend("D")
 
@@ -219,10 +265,12 @@ llist.print_list()
 
 # llist.reverse_recursive()
 
-llist.remove_duplicates()
+# llist.remove_duplicates()
 
-print("Linked List After Operation")
-llist.print_list()
+print(llist.print_nth_from_last(2))
+
+# print("Linked List After Operation")
+# llist.print_list()
 
 
 
