@@ -12,16 +12,46 @@ class CircularLinkedList:
 
         if not self.head:
             new_node.next = new_node
-        else:
-            cur = self.head
+            self.head = new_node
 
-            while cur.next != self.head:
-                cur = cur.next 
+            return
+
+        cur = self.head
+
+        while cur.next != self.head:
+            cur = cur.next 
             
-            new_node.next = self.head
-            cur.next = new_node
-        
+        new_node.next = self.head
+        cur.next = new_node
         self.head = new_node
     
+    
+    def append(self, data):
+        new_node = Node(data)
 
+        if not self.head:
+            new_node.next = new_node
+            self.head = new_node
+            
+            return 
+        
+        cur = self.head
 
+        while cur.next != self.head:
+            cur = cur.next
+        
+        new_node.next = self.head
+        cur.next = new_node
+
+    def print_list(self):
+        if not self.head:
+            return None
+        
+        cur = self.head
+
+        while True:
+            print(cur.data)
+            cur = cur.next
+            if cur == self.head:
+                break
+        
