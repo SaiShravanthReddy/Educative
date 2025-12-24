@@ -238,7 +238,47 @@ class LinkedList:
         self.head = cur
 
 
+        def sum_two_lists(self, llist):
+        # define a new linked list
+        # set carry = 0
+        # traverse the given two linked list
+        # add values at each index
+        # if there is carry, store carry
+        # loop till end
+        
+            if not self.head: 
+                return llist
+            
+            if not llist.head:
+                return self
+            
+            new_ll = LinkedList()
+            
+            carry = 0
+            cur1 = self.head
+            cur2 = llist.head
 
+            while cur1 and cur2:
+                data = (carry + cur1.data + cur2.data)%10
+                new_ll.append(data)
+                carry = (carry + cur1.data + cur2.data)//10
+                
+                cur1 = cur1.next
+                cur2 = cur2.next
+            
+            cur_new = None
+            if cur1:
+                cur_new = cur1
+            else:
+                cur_new = cur2
+                
+            while cur_new:
+                data = (carry + cur_new.data)%10
+                new_ll.append(data)
+                carry = (carry + cur_new.data)//10
+                cur_new = cur_new.next
+            
+            return new_ll
         
 llist = LinkedList()
 
