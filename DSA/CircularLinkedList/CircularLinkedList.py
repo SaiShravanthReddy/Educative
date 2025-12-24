@@ -93,7 +93,7 @@ class CircularLinkedList:
             prev = cur
             cur = cur.next
 
-    def len(self):
+    def __len__(self): # don't use len(), use __len__() - idiomatic
         if not self.head:
             return 0
         
@@ -107,7 +107,8 @@ class CircularLinkedList:
         return count
 
     def split_list(self):
-        len_cll = self.len()
+        len_cll = len(self) # use len(self) instead of self.len()
+
         if len_cll == 0:
             print("Empty circular linked list")
             return
@@ -118,6 +119,7 @@ class CircularLinkedList:
 
         split_index = len_cll//2
         cur = self.head
+        prev = None
 
         while split_index > 0:
             prev = cur
@@ -135,4 +137,43 @@ class CircularLinkedList:
         cur.next = new_cll.head
 
         self.print_list()
+        print("\n")
+        new_cll.print_list()
+
+    def split_list_2ptr(self):
+        # check if length is 0 or 1 and return without len() method
+        # use slow and fast ptr
+        # traverse cll
+        # use prev if necessary
+        # make amends to ptrs
+        # print both cll
+
+        if not self.head:
+            print("Empty circular linked list")
+            return
+        
+        if self.head.next == self.head:
+            print("Circular Linked List of length 1, cannot split")
+            return
+        
+        slow, fast = self.head, self.head.next
+
+        while fast.next != self.head and fast.next.next != self.head:
+            slow = slow.next
+            fast = fast.next.next
+
+        # odd length case
+        if fast.next.next == self.head:
+            fast = fast.next
+
+        new_cll = CircularLinkedList()
+
+        new_cll.head = slow.next
+
+        slow.next = self.head
+
+        fast.next = new_cll.head
+
+        self.print_list()
+        print("\n")
         new_cll.print_list()
