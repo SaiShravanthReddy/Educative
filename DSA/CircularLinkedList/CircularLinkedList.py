@@ -55,3 +55,42 @@ class CircularLinkedList:
             if cur == self.head:
                 break
         
+    def remove_node(self, key):
+        # traverse ll
+        # use prev and cur
+        # make changes
+        if not self.head:
+            return
+
+        cur = self.head
+
+        if cur.data == key and cur == self.head:
+            # single node case
+            if cur.next == self.head:
+                self.head = None
+                return
+
+            # traverse till the end and assign to prev
+            prev = cur
+            while prev.next != self.head:
+                prev = prev.next
+            
+            prev.next = self.head.next
+            # cur = None -> No use
+            self.head = self.head.next
+
+            return
+        
+        prev = cur
+        cur = cur.next
+        
+        while cur != self.head:
+            if cur.data == key:
+                prev.next = cur.next 
+                # cur = None -> No use
+                return
+            
+            prev = cur
+            cur = cur.next
+
+        # If the list has only one node, this breaks.
