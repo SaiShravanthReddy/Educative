@@ -93,4 +93,46 @@ class CircularLinkedList:
             prev = cur
             cur = cur.next
 
-        # If the list has only one node, this breaks.
+    def len(self):
+        if not self.head:
+            return 0
+        
+        cur = self.head.next
+        count = 1
+
+        while cur != self.head:
+            cur = cur.next
+            count += 1
+        
+        return count
+
+    def split_list(self):
+        len_cll = self.len()
+        if len_cll == 0:
+            print("Empty circular linked list")
+            return
+        
+        if len_cll == 1:
+            print("Circular Linked List of length 1, cannot split")
+            return
+
+        split_index = len_cll//2
+        cur = self.head
+
+        while split_index > 0:
+            prev = cur
+            cur = cur.next
+            split_index -= 1
+
+        prev.next = self.head
+        
+        new_cll = CircularLinkedList()
+        new_cll.head = cur
+
+        while cur.next != self.head:
+            cur = cur.next
+
+        cur.next = new_cll.head
+
+        self.print_list()
+        new_cll.print_list()
