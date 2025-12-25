@@ -55,7 +55,7 @@ class CircularLinkedList:
             if cur == self.head:
                 break
         
-    def remove_node(self, key):
+    def remove_node_by_key(self, key):
         # traverse ll
         # use prev and cur
         # make changes
@@ -177,3 +177,6 @@ class CircularLinkedList:
         self.print_list()
         print("\n")
         new_cll.print_list()
+
+    # def josephus_circle(self, step):
+        # remove node
