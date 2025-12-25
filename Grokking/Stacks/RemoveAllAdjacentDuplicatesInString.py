@@ -10,10 +10,8 @@ def remove_duplicates(s):
     stk = []
 
     for value in s:
-        if len(stk) == 0:
-            stk.append(value)
-        elif stk[-1] == value:
-            stk.pop()
+        if stk and stk[-1] == value:
+            stk.pop()            
         else:
             stk.append(value)
 
