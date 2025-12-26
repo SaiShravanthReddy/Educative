@@ -59,6 +59,7 @@ class DoublyLinkedList:
             # if append on end node
 
         if not self.head:
+            print("Empty linked list")
             return 
 
         cur = self.head
@@ -87,6 +88,33 @@ class DoublyLinkedList:
 
 
     def add_before_node(self, key, data):
+        # check if dll is None or not
+        # traverse till the key
+        # first do new node pointers
+        # then do before and after node pointers
+        # handle prepend case
+
+        if not self.head:
+            print("Empty linked list")
+
+        cur = self.head
+
+        while cur and cur.data != key:
+            cur = cur.next
+
+        if cur == None:
+            print("Key not found in the Linked List")
+            return     
+
+        new_node = Node(data)
+
+        new_node.next = cur
+        new_node.prev = cur.prev
+
+        if cur.prev:
+            cur.prev.next = new_node
+        
+        cur.prev = new_node
     
 
 
