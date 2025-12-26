@@ -88,6 +88,7 @@ class DoublyLinkedList:
 
 
     def add_before_node(self, key, data):
+        # Took 7 mins to solve
         # check if dll is None or not
         # traverse till the key
         # first do new node pointers
@@ -116,6 +117,66 @@ class DoublyLinkedList:
         
         cur.prev = new_node
     
+    def delete(self, key):
+        # 7 mins to solve
+        # 8 mins to debug edge cases
+
+        # no linked list
+        # single linked list
+        # start, end, middle
+
+        # 0 len list
+        if not self.head:
+            print("Empty linked list")
+            return
+        
+        # 1 len list
+        if self.head.data == key and not self.head.next:
+            self.head = None
+            return
+
+        # between
+        cur = self.head
+
+        while cur and cur.data != key:
+            cur = cur.next
+        
+        if cur == None:
+            print("Key not found in the Linked List")
+            return 
+
+        if cur.prev:
+            cur.prev.next = cur.next
+        
+        if cur.next:
+            cur.next.prev = cur.prev
+        
+        if not cur.prev:
+            self.head = cur.next
+
+    def reverse(self):
+        # 7 mins to write code
+        # 8 mins to debug
+
+        # traverse and exchane prev and next
+        # handle head and tail
+        # set tail as head
+
+        if not self.head:
+            print("Empty linked list")
+            return
+        
+        cur = self.head
+        prev = None
+        
+        while cur:
+            cur.prev, cur.next = cur.next, cur.prev
+
+            prev = cur
+            cur = cur.prev
+        
+        self.head = prev
+        
 
 
 dllist = DoublyLinkedList()
