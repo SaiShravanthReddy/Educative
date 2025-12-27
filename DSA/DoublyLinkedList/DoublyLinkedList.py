@@ -26,14 +26,14 @@ class DoublyLinkedList:
         cur.next = new_node
         new_node.prev = cur
 
-    def print_list(self):
-        cur = self.head
-        if not cur:
-            return
+    # def print_list(self):
+    #     cur = self.head
+    #     if not cur:
+    #         return
 
-        while cur:
-            print(cur.data)
-            cur = cur.next
+    #     while cur:
+    #         print(cur.data)
+    #         cur = cur.next
 
     def prepend(self, data):
         new_node = Node(data)
@@ -177,14 +177,54 @@ class DoublyLinkedList:
         
         self.head = prev
         
+    def remove_duplicates(self):
+        cur = self.head 
+        seen = set()
+        
+        while cur:
+            if cur.data not in seen:
+                seen.add(cur.data)
+                cur = cur.next
+            else:
+                nxt = cur.next
+                self.delete_node(cur)
+                cur = nxt
+
+    def pairs_with_sum(self, sum_val):
+        # 10 mins to solve
+        # But ans is not in order to what Educative expects
+
+        # create a hashmap to keep track of value
+        # traverse the dll
+        # check if diff exisits in hashmap
+        # if it exists add it to ans array
+        
+        ans = []
+        seen = set()
+        
+        cur = self.head
+        
+        while cur:
+            diff = sum_val - cur.data
+            
+            if diff in seen:
+                ans.append("(" +  str(diff) + "," + str(cur.data) + ")")
+            else:
+                seen.add(cur.data)
+            
+            cur = cur.next
+        
+        return ans
 
 
 dllist = DoublyLinkedList()
-dllist.prepend(0)
+# dllist.prepend(0)
 dllist.append(1)
 dllist.append(2)
 dllist.append(3)
 dllist.append(4)
-dllist.prepend(5)
+dllist.append(5)
 
 dllist.print_list()
+
+print(pairs_with_sum(dllist, 5))
