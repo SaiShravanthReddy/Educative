@@ -1,6 +1,6 @@
 # 2913. Subarrays Distinct Element Sum of Squares 1
 # 14 mins to read and solve
-# O(n^2) solution
+# O(n^2) solution, there is no better solution afaik
 
 class Solution:
     def sumCounts(self, nums: List[int]) -> int:
